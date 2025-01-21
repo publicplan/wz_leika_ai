@@ -29,9 +29,9 @@ WZ_DESCS_PATH = WZ_DATA_DIR.joinpath(
     "WZ2008-2019-10-22-Structure_with_explanatory_notes.xml")
 WZ_KEYWORDS_PATH = WZ_DATA_DIR.joinpath("WZ2008-2019-10-22-Keywords.xml")
 WZ_GP2019A_PATH = WZ_DATA_DIR.joinpath("WZ2008-2021-08-02-Correspondences.xml")
-WZ_DATA_ZIP = WZ_DATA_DIR.joinpath("GWA_Daten_alleWZ_UTF8_20200131.zip")
-WZ_DATA_PATH = WZ_DATA_DIR.joinpath("GWA_Daten_alleWZ_UTF8_20200131.zip")
-WZ_IHK_PATH = WZ_DATA_DIR.joinpath("WZ-2008-IHK-eigene-Schlüssel.csv")
+WZ_DATA_ZIP = WZ_DATA_DIR.joinpath("")
+WZ_DATA_PATH = WZ_DATA_DIR.joinpath("")
+WZ_IHK_PATH = WZ_DATA_DIR.joinpath("")
 
 WZ_TRAIN_PATH = WZ_DATA_DIR.joinpath("train.csv")
 WZ_VAL_PATH = WZ_DATA_DIR.joinpath("validation.csv")
