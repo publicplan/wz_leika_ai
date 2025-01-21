@@ -2,8 +2,6 @@
 
 Search engine for WZ (WirtschaftsZweige) and LeiKa (LeistungsKatalog).
 
-Maintainer: Konrad Schultka
-
 # Python environment.
 
 We only support python 3.7. The preferred install methods is using pip. The
