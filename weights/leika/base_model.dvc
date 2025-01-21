@@ -1,0 +1,6 @@
+md5: b8774dcf3a5a6d0137ff28600ed0103e
+outs:
+- cache: true
+  md5: 0473b9293e3fd57949580dc409b6442b.dir
+  metric: false
+  path: base_model

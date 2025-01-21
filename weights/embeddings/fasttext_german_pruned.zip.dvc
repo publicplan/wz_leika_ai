@@ -1,0 +1,7 @@
+md5: 24b3a125ecc1111b5bef0ae2fa70b235
+outs:
+- md5: bb24e577d482c3febbf7a57760aae000
+  path: fasttext_german_pruned.zip
+  cache: true
+  metric: false
+  persist: false

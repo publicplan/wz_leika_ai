@@ -1,0 +1,5 @@
+-c requirements.txt
+
+yapf==0.29.0
+dvc[gs]
+tensorboard

@@ -1,0 +1,7 @@
+md5: 6ca01c161293297f1c99b61a1a3fb83c
+outs:
+- md5: 3c7cbd32d2bfa88cf93e1f225319fbd8.dir
+  path: shipped_model
+  cache: true
+  metric: false
+  persist: false

@@ -1,0 +1,19 @@
+{
+  "model_name": "LinearClassifier",
+  "fields": [
+    "name",
+    "section_name",
+    "group_name",
+    "class_name",
+    "explanation",
+    "keywords"
+  ],
+  "collection_type": "WZDescriptions",
+  "params": {
+    "use_embedding": true,
+    "use_termdocs": true,
+    "pretrained_embedding": "wz/bert_pretrained",
+    "lemmatize": true,
+    "ccr": true
+  }
+}

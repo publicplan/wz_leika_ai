@@ -1,0 +1,68 @@
+version: '3.7'
+services:
+
+  leika-test:
+    entrypoint: pytest -m leika
+    image: registry.gitlab.com/didado/publicplan/leika-ci 
+    depends_on:
+      - leika-api
+    network_mode: host
+  leika-api:
+    command: --test-api
+    image: registry.gitlab.com/didado/publicplan/leika-ci
+    environment:
+    - ELASTIC_HOST=elasticsearch
+    - ELASTIC_PORT=9200
+    - ELASTIC_INDEX=default_leika_collection
+    depends_on:
+      - leika-fill-index
+    ports:
+      - "80:80"
+  leika-fill-index:
+    image: registry.gitlab.com/didado/publicplan/leika-ci
+    entrypoint: python -m tests.integration.fill_elastic
+    environment:
+    - ELASTIC_HOST=elasticsearch
+    - ELASTIC_PORT=9200
+    depends_on:
+      - elasticsearch
+
+  wz-test:
+    entrypoint: pytest -m wz
+    image: registry.gitlab.com/didado/publicplan/wz-ci 
+    depends_on:
+      - wz-api
+    network_mode: host
+    volumes:
+      - wz-api-log:/api_log
+
+  wz-api:
+    command: --log-dir "/api_log"
+    image: registry.gitlab.com/didado/publicplan/wz-ci
+    network_mode: host
+    volumes:
+      - wz-api-log:/api_log
+    depends_on:
+      - wz-serve-editing
+    environment:
+      - EDITING_URL=http://0.0.0.0:8000/editing
+
+  wz-serve-editing:
+    network_mode: host
+    image: registry.gitlab.com/didado/publicplan/wz-ci
+    entrypoint: python -m tests.integration.serve_editing
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.2
+    environment:
+      - cluster.name=elasticsearch
+      - network.host=0.0.0.0
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+volumes:
+  wz-api-log:

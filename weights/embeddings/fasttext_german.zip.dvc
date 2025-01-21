@@ -1,0 +1,6 @@
+md5: 502341f45a99f30d838f982a246ff441
+outs:
+- cache: true
+  md5: a6a5542aee5bdf9b912096fc23c2017f
+  metric: false
+  path: fasttext_german.zip

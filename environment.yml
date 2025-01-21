@@ -1,0 +1,24 @@
+name: publicplan-env
+channels:
+  - conda-forge
+  - anaconda
+dependencies:
+  - python=3.7
+  - numpy
+  - pytorch >=1.4.0
+  - pandas >=0.25.0
+  - spacy >=2.1.8
+  - textacy
+  - pytest
+  - tensorboard
+  - pip
+  - pip:
+      - dvc[gs]
+      - fastapi
+      - uvicorn
+      - elasticsearch
+      - click
+      - tqdm
+      - nevergrad
+      - symspellpy
+      - transformers

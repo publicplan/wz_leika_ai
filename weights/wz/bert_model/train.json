@@ -1,0 +1,8 @@
+{
+  "lr": 0.01,
+  "weight_decay": 0.0,
+  "num_prefilter": 50,
+  "queries_per_batch": 10,
+  "sample_size": 5,
+  "epochs": 1
+}

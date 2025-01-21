@@ -1,0 +1,7 @@
+
+['remote "upstream"']
+url = gs://publicplan-bucket/publicplan-dvc/
+[core]
+remote = upstream
+['remote "readonly-upstream"']
+url = http://storage.googleapis.com/publicplan-bucket/publicplan-dvc

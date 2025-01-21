@@ -1,0 +1,48 @@
+image: docker:19.03.1
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+
+services:
+  - docker:19.03.1-dind
+
+stages:
+  - build-test
+  - integration-test
+
+build-test:
+  stage: build-test
+  before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker pull registry.gitlab.com/didado/publicplan/pp-env-builder-ci || true
+  - docker pull registry.gitlab.com/didado/publicplan/wz-ci || true
+  script:
+  - apk add make
+  - make wz-ci
+  - docker run --entrypoint pytest registry.gitlab.com/didado/publicplan/wz-ci
+  - docker run --entrypoint "" registry.gitlab.com/didado/publicplan/wz-ci
+      pylint -v publicplan tests
+  - docker run --entrypoint "" registry.gitlab.com/didado/publicplan/wz-ci
+      mypy publicplan tests
+
+  - docker push registry.gitlab.com/didado/publicplan/pp-env-builder-ci
+  - docker push registry.gitlab.com/didado/publicplan/wz-ci
+  only:
+  - merge_requests
+
+wz-integration-test:
+  stage: integration-test
+  before_script:
+  - apk add py-pip
+  - apk add python-dev libffi-dev openssl-dev gcc libc-dev make
+  - apk add docker-compose
+  script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker pull registry.gitlab.com/didado/publicplan/wz-ci
+  - docker-compose -f docker/ci-test-docker-compose.yml up
+      --exit-code-from wz-test wz-test
+  after_script:
+  - docker-compose -f docker/ci-test-docker-compose.yml down -v
+  only:
+    - merge_requests

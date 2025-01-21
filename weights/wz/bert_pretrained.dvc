@@ -1,0 +1,7 @@
+md5: 9388dbc96edd4cfa3bdc873b8d4bdcb4
+outs:
+- md5: 8508d89c09b0ba9455bf2cc223ee3879.dir
+  path: bert_pretrained
+  cache: true
+  metric: false
+  persist: false
